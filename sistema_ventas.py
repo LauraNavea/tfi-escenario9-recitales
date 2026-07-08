@@ -83,6 +83,63 @@ def main():
             print("\nFinalizando la jornada de operaciones...")
         else:
             print("Error: Opción incorrecta. Marque 1 o 2.")
+def ejecutar_sistema():
+    # 1. INICIALIZACIÓN
+    c_vip, v_vip, p_vip = 500, 0, 250000
+    c_gral, v_gral, p_gral = 5000, 0, 150000
+    c_pref, v_pref, p_pref = 1500, 0, 180000
+    c_baj, v_baj, p_baj = 2500, 0, 130000
+    c_alt, v_alt, p_alt = 3000, 0, 100000
+    c_pop, v_pop, p_pop = 5000, 0, 70000
+    total_recaudado = 0
+    total_entradas = 0
+    
+    # FUNCIONES INTERNAS (Tienen acceso directo a las variables de arriba)
+    def calcular_sector_mas_demandado():
+        mayor = v_vip
+        sector = "Campo VIP"
+        if v_gral > mayor: mayor = v_gral; sector = "Campo General"
+        if v_pref > mayor: mayor = v_pref; sector = "Platea Preferencial"
+        if v_baj > mayor: mayor = v_baj; sector = "Platea Baja"
+        if v_alt > mayor: mayor = v_alt; sector = "Platea Alta"
+        if v_pop > mayor: mayor = v_pop; sector = "Popular"
+        return sector
+
+    def mostrar_estadisticas():
+        print("\n--- ESTADÍSTICAS FINALES ---")
+        print(f"VIP: {v_vip} | Gral: {v_gral} | Pref: {v_pref}")
+        print(f"Baja: {v_baj} | Alta: {v_alt} | Pop: {v_pop}")
+        print(f"Recaudado: ${total_recaudado:,.0f}")
+        print("Sector más demandado:", calcular_sector_mas_demandado())
+
+    # 3. BUCLE PRINCIPAL
+    while True:
+        print("\n--- SELECCIONE SECTOR ---")
+        print(f"1. VIP (Disp: {c_vip - v_vip}) | 2. Gral (Disp: {c_gral - v_gral})")
+        print(f"3. Pref (Disp: {c_pref - v_pref}) | 4. Baja (Disp: {c_baj - v_baj})")
+        print(f"5. Alta (Disp: {c_alt - v_alt}) | 6. Pop (Disp: {c_pop - v_pop})")
+        
+        opc_s = input("Opción: ").strip()
+        precio_base = 0
+        if opc_s == "1" and v_vip < c_vip: v_vip += 1; precio_base = p_vip
+        elif opc_s == "2" and v_gral < c_gral: v_gral += 1; precio_base = p_gral
+        elif opc_s == "3" and v_pref < c_pref: v_pref += 1; precio_base = p_pref
+        elif opc_s == "4" and v_baj < c_baj: v_baj += 1; precio_base = p_baj
+        elif opc_s == "5" and v_alt < c_alt: v_alt += 1; precio_base = p_alt
+        elif opc_s == "6" and v_pop < c_pop: v_pop += 1; precio_base = p_pop
+        else: print("¡Error!"); continue
+            
+        desc = input("Descuento (1.Antic, 2.Prev, 3.Pack, 4.Nada): ").strip()
+        tasa = 0.35 if desc=="1" else 0.15 if desc=="2" else 0.23 if desc=="3" else 0
+        precio_final = precio_base * (1 - tasa)
+        total_recaudado += precio_final
+        total_entradas += 1
+        
+        if input("¿Salir? (s/n): ").strip() == 's': break
+            
+    # 4. LLAMADA AL FINAL
+    mostrar_estadisticas()
+    input("\nPresiona Enter para cerrar...")
 
 if __name__ == "__main__":
-    main()
+    ejecutar_sistema()
