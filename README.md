@@ -3,7 +3,7 @@
 ## 👥 Integrantes del Grupo
 
 - **Ferreyra, Juan Manuel** — Legajo:
-- **Gómez Parodi, Estanislao** — Legajo: **29751**
+- **Gómez Parodi, Estanislao** — Legajo:
 - **Navea Villasmil, Laura Isabel** — Legajo: **27864**
 - **Robles, Francisco Leonel** — Legajo: **29903**
 
@@ -102,3 +102,4 @@ Se realizaron pruebas sobre diferentes situaciones, entre ellas:
 - Registro de operaciones en el archivo.
 
 Esto permitió comprobar que las validaciones implementadas por el grupo funcionaban correctamente y que el funcionamiento del sistema no dependía de aceptar automáticamente las respuestas proporcionadas por la IA.
+
