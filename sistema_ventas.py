@@ -1,4 +1,5 @@
-```python
+import os
+print(os.getcwd()) #imprime por pantalla la direccion donde se creo el archivo.txt
 # =====================================================================
 # VARIABLES GLOBALES - Control de Inventario (Capacidad máxima)
 # =====================================================================
@@ -23,6 +24,27 @@ acum_dinero_total = 0.0
 # Nombre del archivo físico secuencial donde se guardarán los datos
 archivo_nombre = "registro_ventas.txt"
 
+# Validacion de Fecha para que el usuario ingrese una fecha valida
+def validar_fecha(dia, mes, anio):
+    if anio < 2026:
+        return False
+    if not (1 <= mes <= 12):
+        return False
+    
+    # Algoritmo matemático para determinar bisiesto sin usar librerías externas
+    es_bisiesto = (anio % 4 == 0 and anio % 100 != 0) or (anio % 400 == 0)
+    
+    if mes in [1, 3, 5, 7, 8, 10, 12]:
+        max_dias = 31
+    elif mes in [4, 6, 9, 11]:
+        max_dias = 30
+    elif mes == 2:
+        max_dias = 29 if es_bisiesto else 28
+    else:
+        return False
+        
+    return 1 <= dia <= max_dias
+
 # =====================================================================
 # FUNCIÓN PRINCIPAL DEL SISTEMA
 # =====================================================================
@@ -43,7 +65,20 @@ def main():
             continue
 
         if opcion_menu == 1:
-            print("\n[Módulo de registro en desarrollo...]")
+            nombre_recital = input("Ingrese el nombre del recital: ")
+ 
+            while True:
+                try:
+                    v_dia = int(input("Ingrese el día del evento: "))
+                    v_mes = int(input("Ingrese el número de mes (1-12): "))
+                    v_anio = int(input("Ingrese el año (2026 en adelante): "))
+                    
+                    if validar_fecha(v_dia, v_mes, v_anio):
+                        break
+                    else:
+                        print("Error: La fecha ingresada es inválida o inexistente. Intente nuevamente.")
+                except ValueError:
+                    print("Error: Los datos de la fecha deben ser números enteros.")
         elif opcion_menu == 2:
             print("\nFinalizando la jornada de operaciones...")
         else:
