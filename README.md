@@ -3,7 +3,7 @@
 ## 👥 Integrantes del Grupo
 
 - **Ferreyra, Juan Manuel** — Legajo:
-- **Gómez Parodi, Estanislao** — Legajo:
+- **Gómez Parodi, Estanislao** — Legajo: **29751**
 - **Navea Villasmil, Laura Isabel** — Legajo: **27864**
 - **Robles, Francisco Leonel** — Legajo: **29903**
 
